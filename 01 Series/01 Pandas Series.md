@@ -305,6 +305,8 @@ ser2.div(10)
     B      1.0
     C    100.0
     D     10.0
+    E      1.0
+    F      0.1
     dtype: float64
 
 
@@ -321,6 +323,8 @@ ser2.mul(100)
     B      1000
     C    100000
     D     10000
+    E      1000
+    F       100
     dtype: int64
 
 
@@ -337,6 +341,8 @@ ser2.add(5)
     B      15
     C    1005
     D     105
+    E      15
+    F       6
     dtype: int64
 
 
@@ -353,6 +359,8 @@ ser2.sub(1)
     B      9
     C    999
     D     99
+    E      9
+    F      0
     dtype: int64
 
 
@@ -369,6 +377,8 @@ ser2.cumsum()
     B      11
     C    1011
     D    1111
+    E    1121
+    F    1122
     dtype: int64
 
 
@@ -385,6 +395,151 @@ ser2.diff()
     B      9.0
     C    990.0
     D   -900.0
+    E    -90.0
+    F     -9.0
     dtype: float64
+
+
+
+### apply
+
+
+```python
+def add5(x):
+    return x + 5
+```
+
+
+```python
+ser2.apply(add5)
+```
+
+
+
+
+    A       6
+    B      15
+    C    1005
+    D     105
+    E      15
+    F       6
+    dtype: int64
+
+
+
+
+```python
+add5_l = lambda x: x + 5
+```
+
+
+```python
+ser2.apply(add5_l)
+```
+
+
+
+
+    A       6
+    B      15
+    C    1005
+    D     105
+    E      15
+    F       6
+    dtype: int64
+
+
+
+
+```python
+ser2.apply(lambda x: x + 5)
+```
+
+
+
+
+    A       6
+    B      15
+    C    1005
+    D     105
+    E      15
+    F       6
+    dtype: int64
+
+
+
+
+```python
+ser2.apply(lambda x: str(x))
+```
+
+
+
+
+    A       1
+    B      10
+    C    1000
+    D     100
+    E      10
+    F       1
+    dtype: object
+
+
+
+
+```python
+ser2.apply(str)
+```
+
+
+
+
+    A       1
+    B      10
+    C    1000
+    D     100
+    E      10
+    F       1
+    dtype: object
+
+
+
+### Assignment
+
+Calculate mean of Series `ser2` with 3 ways
+
+
+```python
+ser2.mean()
+```
+
+
+
+
+    187.0
+
+
+
+
+```python
+ser2.cumsum()[-1] / ser2.count()
+```
+
+
+
+
+    187.0
+
+
+
+
+```python
+ser2.sum() / ser2.count()
+```
+
+
+
+
+    187.0
 
 
